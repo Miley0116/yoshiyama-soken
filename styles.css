@@ -825,25 +825,39 @@ html {
     align-items: start;
 }
 
-/* 2. ラベルの伸びを防止（最重要） */
+/* 2. ラベルの設定：PC・スマホ両方で綺麗に見えるように調整 */
 .ba-label {
     position: absolute !important;
     top: 10px !important;
     left: 10px !important;
-    display: table !important;      /* 文字幅に背景を合わせる */
-    width: auto !important;         /* 横100%になるのを防ぐ */
-    padding: 4px 12px !important;
+    
+    /* 文字幅に合わせて背景を広げ、かつ伸びすぎを防止 */
+    display: inline-block !important; 
+    width: auto !important;
+    
+    /* バーの大きさを調整（左右の余白を多めに設定） */
+    padding: 6px 16px !important; 
+    
     background: rgba(0, 0, 0, 0.7) !important;
     color: white !important;
-    font-size: 11px !important;
+    font-size: 13px !important;   /* PCでも見やすいよう少し大きく */
     font-weight: bold !important;
     border-radius: 4px !important;
     z-index: 10 !important;
-    line-height: 1.2 !important;
+    line-height: 1 !important;    /* バーの縦幅が変に広がらないよう固定 */
+    white-space: nowrap !important;
 }
 
 .ba-label.after {
     background: #d32f2f !important; /* 赤色 */
+}
+
+/* スマホ用の微調整（画面が狭い時は少しコンパクトに） */
+@media (max-width: 768px) {
+    .ba-label {
+        padding: 4px 10px !important;
+        font-size: 11px !important;
+    }
 }
 
 /* 3. 写真の親要素（上下の隙間を管理） */
