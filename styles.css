@@ -815,19 +815,51 @@ html {
     scroll-behavior: smooth;
 }
 
-/* --- 施工事例：最終調整版 --- */
+/* --- 施工事例 --- */
 
-/* 1. 横並びの枠組み */
+/* --- 施工事例：上下並び（Before上 / After下） --- */
+
+/* Before/Afterを囲む枠 */
 .ba-flex-row {
-    display: flex;
-    gap: 8px; /* 写真の間の隙間 */
-    width: 100%;
+    display: block !important; /* 横並びを解除して縦並びに */
+    width: 100% !important;
 }
 
+/* 各写真のコンテナ */
 .ba-container {
-    flex: 1;
-    position: relative; /* これがないとラベルが写真の上に乗りません */
-    overflow: hidden;
+    position: relative !important;
+    width: 100% !important;
+    margin-bottom: 5px !important; /* BeforeとAfterの間のわずかな隙間 */
+}
+
+/* ラベルの設定（左上に固定） */
+.ba-label {
+    position: absolute !important;
+    top: 8px !important;
+    left: 8px !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+    color: white !important;
+    padding: 3px 10px !important;
+    font-size: 11px !important;
+    font-weight: bold !important;
+    border-radius: 4px !important;
+    z-index: 10 !important;
+}
+
+.ba-label.after {
+    background: rgba(211, 47, 47, 0.9) !important; /* Afterは赤色を維持 */
+}
+
+/* 写真のサイズ設定（現状のサイズ設定を維持・継承） */
+.work-card img {
+    width: 100% !important;
+    display: block !important;
+    /* height や object-fit は現在の設定がそのまま適用されます */
+}
+
+/* 下側のAfter画像の下に少し隙間を作る */
+.ba-container:last-child {
+    margin-bottom: 15px !important;
 }
 
 /* 2. ラベルの共通設定 */
