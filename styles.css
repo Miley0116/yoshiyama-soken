@@ -815,55 +815,60 @@ html {
     scroll-behavior: smooth;
 }
 
-/* --- 施工事例：上下並び 最終決定版 --- */
+/* --- 施工事例：高さ統一・上下並び決定版 --- */
 
-/* 1. 全体のグリッド（隣の写真に引っ張られない設定） */
+/* 1. 全体のグリッド */
 .works-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    align-items: start; /* これで横の写真との高さ影響を切り離します */
+    align-items: start;
 }
 
-/* 2. Before/Afterセットを縦に並べる設定 */
-.ba-flex-row {
-    display: block !important;
+/* 2. Before/Afterセットの箱 */
+.work-card {
+    display: flex;
+    flex-direction: column;
 }
 
-/* 3. 写真の親要素（ここが重要！） */
+/* 3. 写真を包む容器 */
 .ba-container {
-    position: relative !important;
-    width: 100% !important;
-    line-height: 0 !important; /* 写真の下の謎の余白を消す */
-    margin-bottom: 5px !important; /* BeforeとAfterの間の隙間 */
+    position: relative;
+    width: 100%;
+    line-height: 0; /* 下の隙間を消す */
+    margin-bottom: 6px; /* BeforeとAfterの間の隙間 */
 }
 
-/* 4. ラベルの設定（文字の長さに合わせる） */
+/* 4. ラベルの設定（文字の幅に合わせる） */
 .ba-label {
-    position: absolute !important;
-    top: 10px !important;
-    left: 10px !important; /* 全員左上 */
-    right: auto !important; /* 右寄せを解除 */
-    width: auto !important; /* 横に長く伸びるのを防ぐ */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: auto !important; /* 横に伸びるのを防止 */
     display: inline-block !important;
-    background: rgba(0, 0, 0, 0.7) !important;
-    color: white !important;
-    padding: 3px 10px !important;
-    font-size: 11px !important;
-    border-radius: 4px !important;
-    z-index: 10 !important;
-    line-height: 1.5 !important; /* 文字自体の高さ */
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 4px;
+    z-index: 10;
 }
 
-/* Afterラベルの色 */
 .ba-label.after {
-    background: rgba(211, 47, 47, 0.9) !important;
+    background: rgba(211, 47, 47, 0.9);
 }
 
-/* 5. 写真の設定 */
+/* 5. 【重要】写真のサイズをここで統一する */
 .work-card img {
     width: 100% !important;
-    height: auto !important; /* クライアント希望の「今のサイズを維持」 */
-    display: block !important;
-    border-radius: 6px !important;
+    height: 200px !important; /* ←ここで高さを強制的に揃えます */
+    object-fit: cover !important; /* 切り抜いて枠にピッタリ合わせる */
+    border-radius: 6px;
+    display: block;
+}
+
+/* 通常写真（下側の8枚）も同じ高さにする */
+.normal-img {
+    height: 200px !important; 
 }
