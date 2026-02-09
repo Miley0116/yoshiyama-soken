@@ -815,84 +815,55 @@ html {
     scroll-behavior: smooth;
 }
 
-/* --- 施工事例 --- */
+/* --- 施工事例：上下並び 最終決定版 --- */
 
-/* --- 施工事例：上下並び（Before上 / After下） --- */
-
-/* Before/Afterを囲む枠 */
-.ba-flex-row {
-    display: block !important; /* 横並びを解除して縦並びに */
-    width: 100% !important;
+/* 1. 全体のグリッド（隣の写真に引っ張られない設定） */
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    align-items: start; /* これで横の写真との高さ影響を切り離します */
 }
 
-/* 各写真のコンテナ */
+/* 2. Before/Afterセットを縦に並べる設定 */
+.ba-flex-row {
+    display: block !important;
+}
+
+/* 3. 写真の親要素（ここが重要！） */
 .ba-container {
     position: relative !important;
     width: 100% !important;
-    margin-bottom: 5px !important; /* BeforeとAfterの間のわずかな隙間 */
+    line-height: 0 !important; /* 写真の下の謎の余白を消す */
+    margin-bottom: 5px !important; /* BeforeとAfterの間の隙間 */
 }
 
-/* ラベルの設定（左上に固定） */
+/* 4. ラベルの設定（文字の長さに合わせる） */
 .ba-label {
     position: absolute !important;
-    top: 8px !important;
-    left: 8px !important;
+    top: 10px !important;
+    left: 10px !important; /* 全員左上 */
+    right: auto !important; /* 右寄せを解除 */
+    width: auto !important; /* 横に長く伸びるのを防ぐ */
+    display: inline-block !important;
     background: rgba(0, 0, 0, 0.7) !important;
     color: white !important;
     padding: 3px 10px !important;
     font-size: 11px !important;
-    font-weight: bold !important;
     border-radius: 4px !important;
     z-index: 10 !important;
+    line-height: 1.5 !important; /* 文字自体の高さ */
 }
 
+/* Afterラベルの色 */
 .ba-label.after {
-    background: rgba(211, 47, 47, 0.9) !important; /* Afterは赤色を維持 */
+    background: rgba(211, 47, 47, 0.9) !important;
 }
 
-/* 写真のサイズ設定（現状のサイズ設定を維持・継承） */
+/* 5. 写真の設定 */
 .work-card img {
     width: 100% !important;
+    height: auto !important; /* クライアント希望の「今のサイズを維持」 */
     display: block !important;
-    /* height や object-fit は現在の設定がそのまま適用されます */
-}
-
-/* 下側のAfter画像の下に少し隙間を作る */
-.ba-container:last-child {
-    margin-bottom: 15px !important;
-}
-
-/* 2. ラベルの共通設定 */
-.ba-label {
-    position: absolute;
-    top: 8px;
-    padding: 3px 10px;
-    font-size: 11px;
-    font-weight: bold;
-    color: white;
-    border-radius: 4px;
-    z-index: 10; /* ラベルを一番手前に持ってくる */
-}
-
-/* 3. BeforeとAfterで位置と色を変える（ここが重要！） */
-.ba-label:not(.after) {
-    left: 8px; /* Beforeは左上 */
-    background: rgba(0, 0, 0, 0.7);
-}
-
-.ba-label.after {
-    right: 8px; /* Afterは右上にする */
-    background: rgba(211, 47, 47, 0.9);
-}
-
-/* 4. 写真の高さと形を統一 */
-.work-card img {
-    width: 100%;
-    height: 200px; 
-    object-fit: cover;
-    border-radius: 6px;
-    display: block;
-}
-}
-    margin-bottom: 15px; /* 写真同士の縦の隙間 */
+    border-radius: 6px !important;
 }
