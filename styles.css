@@ -814,3 +814,44 @@ section {
 html {
     scroll-behavior: smooth;
 }
+
+/* Before/After共通設定 */
+.ba-container {
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.ba-label {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: rgba(85, 85, 85, 0.9);
+    color: white;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 3px;
+    z-index: 10;
+}
+
+.ba-label.after {
+    background: rgba(211, 47, 47, 0.9);
+}
+
+/* カードのデザイン調整（文字を消した時用） */
+.work-card {
+    background: none !important; /* 背景色を消す */
+    box-shadow: none !important; /* 影を消す */
+    padding: 0 !important;
+}
+
+.work-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    display: block;
+}
+
+.normal-img {
+    margin-bottom: 15px; /* 写真同士の縦の隙間 */
+}
